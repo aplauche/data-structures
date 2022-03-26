@@ -75,16 +75,87 @@ class BinarySearchTree {
             }
         }
     }
+
+    dfsPreOrder(){
+        let output = []
+        let current = this.root
+
+        const helper = (node) => {
+            output.push(node.value)
+            if(node.left) helper(node.left)
+            if(node.right) helper(node.right)
+        }
+
+        helper(current)
+
+        return output
+    }
+
+    dfsPostOrder(){
+        let output = []
+        let current = this.root
+
+        const helper = (node) => {
+            if(node.left) helper(node.left)
+            if(node.right) helper(node.right)
+            output.push(node.value)
+        }
+
+        helper(current)
+
+        return output
+    }
+
+    dfsInOrder(){
+        let output = []
+        let current = this.root
+
+        const helper = (node) => {
+            if(node.left) helper(node.left)
+            output.push(node.value)
+            if(node.right) helper(node.right)
+        }
+
+        helper(current)
+
+        return output
+    }
+
+    bfs(){
+        let queue = []
+        let output = []
+        let dequeuedItem = null
+    
+        if(!this.root) return false
+    
+        queue.push(this.root)
+    
+        while(queue.length > 0){
+            dequeuedItem = queue.shift()
+            output.push(dequeuedItem.value)
+            if(dequeuedItem.left) queue.push(dequeuedItem.left)
+            if(dequeuedItem.right) queue.push(dequeuedItem.right)
+        }
+    
+        return output
+    }
+    
 }
 
 var tree = new BinarySearchTree()
+
 tree.insert(10)
-tree.insert(5)
-tree.insert(7)
-tree.insert(2)
-tree.insert(13)
-tree.insert(13)
-tree.insert(13)
-console.log(tree.root)
-console.log(tree.search(12))
-console.log(tree.search(7))
+tree.insert(6)
+tree.insert(15)
+tree.insert(8)
+tree.insert(3)
+tree.insert(20)
+
+
+
+
+
+console.log(tree.bfs())
+console.log(tree.dfsPreOrder())
+console.log(tree.dfsPostOrder())
+console.log(tree.dfsInOrder())
