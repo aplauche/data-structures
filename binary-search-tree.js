@@ -144,6 +144,9 @@ class BinarySearchTree {
 
 var tree = new BinarySearchTree()
 
+
+// TESTING
+
 tree.insert(10)
 tree.insert(6)
 tree.insert(15)
